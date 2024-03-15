@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ea*c684ssrs4$10so+b=0q#viz2i&be$_xh%58rsvsosscy2@%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['weather-app-bambootester.koyeb.app']
 
 
 # Application definition
@@ -119,6 +119,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [BASE_DIR / 'static',
                     BASE_DIR / 'static' / 'images',]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
 # Default primary key field type

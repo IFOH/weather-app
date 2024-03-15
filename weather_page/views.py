@@ -40,11 +40,11 @@ def home(request):
             queries['locations'] = place_name
             response = requests.get("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast", params=queries)
             
-            if response.status_code == 200: #Valid api response
+            if Place.objects.filter(name__iexact=place_name).exists():
+                messages.error(request, "City already exists in the list!")
+            elif response.status_code == 200: #Valid api response
                 Place.objects.create(name=place_name)
                 messages.success(request, "City added successfully!")
-            elif Place.objects.filter(name__iexact=place_name).exists():
-                messages.error(request, "City already exists in the list!")
             else:
                 messages.error(request, ("City '%s' does not exist in the world!" %place_name)) #Format message to include place name
             return redirect('home')
